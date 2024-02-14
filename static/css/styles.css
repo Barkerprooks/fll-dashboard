@@ -1,0 +1,295 @@
+/* global styles */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+a { 
+    text-decoration: none;
+    transition: 0.2s; 
+    color: #3e3e3e;
+}
+
+a:hover { color: rgb(178, 145, 0); }
+
+body { height: 100vh; }
+
+/* general styles */
+.team-item {
+    color: #3e3e3e;
+    border: 1px solid rgb(122, 100, 0);;
+    border-radius: 8px;
+    margin: 12px 0;
+    padding: 12px;
+    transition: 0.2s;
+}
+
+.team-title {
+    justify-content: space-between;
+    display: flex;
+    font-size: 14pt;
+    border-bottom: 1px solid rgb(122, 100, 100);
+    margin-bottom: 4px;
+    padding-bottom: 4px;
+}
+
+.team-count {
+    font-size: 9pt;
+}
+
+.team-runs {
+    list-style: none;
+    text-align: right;
+}
+
+.team-run-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.run-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 12px;
+    border-radius: 8px;
+    width: 30.33%;
+    margin: 1%;
+    border: 1px solid lightgrey;
+    box-shadow: 2px 4px 8px lightgrey;
+    height: 250px;
+}
+
+.run-item-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.run-item-version {
+    text-align: right;
+}
+
+.run-item-description {
+    word-wrap: break-word;
+    overflow: scroll;
+    padding: 16px;
+    height: 100px;
+}
+
+.run-item-upload {
+    padding: 16px;
+    text-align: right;
+}
+
+.run-item-footer {
+    text-align: right;
+    display: flex;
+    margin-top: 12px;
+    justify-content: space-between;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.upload {
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+    color: grey;
+    transition: 0.2s;
+    padding: 25px;
+    margin: 24px 0;
+    cursor: pointer;
+    display: block;
+    text-align: center;
+}
+
+.upload:hover {
+    background: rgb(255, 208, 0);
+    color: black;
+}
+
+.update-submit-button {
+    overflow: scroll;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    font-size: 11pt;
+    transition: 0.2s;
+}
+
+.update-submit-button:hover { color:rgb(248, 215, 72); }
+
+.update-submit-button:disabled { color: lightgrey; }
+
+.close-button { color: lightcoral; }
+.close-button:hover { color: red; }
+
+.edit-inputs {
+    width: 100%;
+    font-family: monospace;
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-input-slot {
+    width: 5ch;
+}
+
+.input-button {
+    font-size: 12pt;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.save:hover { color: green; }
+.delete:hover { color: red; }
+
+.team-card {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 30.33%;
+    margin: 1%;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 16px;
+}
+
+.team-card a {
+    display: block;
+    text-align: right;
+    height: 100px;
+}
+
+.add-card a {
+    padding: 24px;
+    margin: 12px 35%;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+.add-card {
+    width: 30.33%;
+}
+
+.team-image { 
+    border: 1px solid rgb(248, 215, 72);
+    border-radius: 15px;
+    margin: auto;
+    width: 200px;
+    height: 150px; 
+}
+
+/* specific items */
+#sidenav {
+    background: rgb(248, 215, 72);
+    box-shadow: 2px 0px 8px grey;
+    font-family: Arial;
+    padding: 16px;
+    height: 100%;
+    float: left;
+    width: 25%;
+}
+
+#sidenav-title { 
+    justify-content: space-between;
+    display: flex;
+    font-size: 20px;
+    color: #3e3e3e;
+    margin-bottom: 24px;
+    overflow: hidden;
+}
+
+#content {
+    font-family: Arial;
+    overflow: scroll;
+    padding: 12px 24px;
+    height: 100vh;
+    width: 75%;
+    float: left;
+}
+
+#team-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+#runs {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+#upload-full-run-button {
+    padding: 0 24px;
+    background: rgb(248, 215, 72);
+    border-radius: 5px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#upload-full-run-button:hover { background: rgb(243, 207, 44); }
+
+#create-run-title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+#modal-view {
+    width: 500px;
+    margin: auto;
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid grey;
+    justify-content: space-between;
+    flex-direction: column;
+    display: flex;
+    background: white;
+    box-shadow: 2px 2px 8px grey;
+}
+
+#index-title {
+    margin-bottom: 16px;
+}
+
+#upload-new-run-button {
+    border: 1px solid lightgrey;
+    cursor: pointer;
+    padding: 6px 0;
+    border-radius: 5px;
+    background: transparent;
+    transition: 0.2s;
+}
+
+#upload-new-run-button:hover { background: rgb(255, 208, 0); }
+
+#create-run-inputs {
+    display: flex;
+    justify-content: space-between;
+}
+
+#create-run-inputs input {
+    padding: 4px;
+}
+
+#create-new {
+    flex-direction: column;
+    text-align: center;
+    display: flex;
+    margin-top: 75px;
+}
+
+#team-cards {
+    display: flex;
+    flex-wrap: wrap;
+}

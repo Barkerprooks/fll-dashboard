@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block content %}
+<div id="team-title">
+    <h2>{{ team['group_name'] | capitalize }}'s Runs</h2>
+    <button id="upload-full-run-button">Upload full run</button>
+</div>
+<div id="runs">
+    {% for rowid, run in runs.items() %}
+    <div class="run-item">
+        <div class="run-item-title">
+            {% if modal == "edit" and edit == rowid %}
+            <form class="edit-inputs" method="POST" action="{{ url_for('Run.modify_run') }}" id="update-form-{{ rowid }}">
+                <input class="edit-input-slot" name="robot_slot" value="{{ run['robot_slot'] }}" type="number" />
+                <input class="edit-input-title" name="title" value="{{ run['title'] }}" />
+                <input name="id" value="{{ rowid }}" hidden />
+                <input name="team_id" value="{{ team['rowid'] }}" hidden />
+            </form>
+            {% else %}
+            <h3>{{ run['robot_slot'] }}</h3>
+            <h3>{{ run['title'] | capitalize }}</h3>
+            {% endif %}
+        </div>
+        <div class="run-item-content">
+            <h5 class="run-item-version">v{{ run['version'] }}</h5>
+            <form method="POST" action="{{ url_for('Run.update_run') }}" enctype="multipart/form-data">
+                <label class="upload" for="update-upload-{{ rowid }}">
+                    <input class="upload-input" id="update-upload-{{ rowid }}" name="upload" type="file" hidden />
+                    <span style="font-size: 9pt; overflow: hidden">Update YOURFILE.llsp3 here</span>
+                </label>
+                <input name="id" value="{{ rowid }}" hidden />
+                <input name="team_id" value="{{ team['rowid'] }}" hidden />
+                <input class="update-submit-button" type="submit" value="update run" disabled />
+            </form>
+        </div>
+        <div class="run-item-footer">
+            {% if modal == "edit" and edit == rowid %}
+            <div class="save-selections">
+                <input class="input-button save" type="submit" form="update-form-{{ rowid }}" value="save" />
+                <a style="margin-left: 12px" href="{{ url_for('Team.view_team', rowid=team['rowid']) }}">cancel</a>
+            </div>
+            <form method="POST" action="{{ url_for('Run.remove_run') }}">
+                <input name="id" value="{{ rowid }}" hidden />
+                <input name="team_id" value="{{ team['rowid'] }}" hidden />
+                <input class="input-button delete" type="submit" value="delete" />
+            </form>
+            {% else %}
+            <a href="?modal=edit&edit={{ rowid }}">edit</a>
+            <a href="{{ url_for('static', filename=run['url']) }}" target="_blank">download</a>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+    <div class="add-card" id="create-new">
+        <small>Create a new run</small>
+        <a id="create-new-button" href="?modal=create">+</a>
+    </div>
+</div>
+{% if modal == "create" %}
+<form id="modal-view" method="POST" action="{{ url_for('Run.create_run') }}" enctype="multipart/form-data">
+    <div id="create-run-title">
+        <h3>Create a new run</h3>
+        <a href="{{ url_for('Team.view_team', rowid=team['rowid']) }}" class="close-button">X</a>
+    </div>
+    <div id="create-run-inputs">
+        <input name="title" placeholder="Mission Name(s)">
+        <div>
+            <span>Robot Slot - </span>
+            <input type="number" name="robot_slot" value=1 min="1" max="20" style="width: 7ch" id="input-number" />
+        </div>
+    </div>
+    <input name="id" value="{{ team['rowid'] }}" hidden />
+    <label class="upload" for="upload">
+        <input class="upload-input" id="upload" name="upload" type="file" hidden />
+        <span>Upload YOURFILE.llsp3 here</span>
+    </label>
+    <input id="upload-new-run-button" type="submit" value="Create" />
+</form>
+{% endif %}
+{% endblock %}

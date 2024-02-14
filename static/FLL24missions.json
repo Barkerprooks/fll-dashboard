@@ -1,0 +1,20 @@
+[
+    {
+        "title": "3D CINEMA", 
+        "description": "If the 3D cinema's small red beam is completely to the right of the black frame",
+        "min_score": 20,
+        "max_score": 20
+    },
+    {
+        "title": "THEATER SCENE CHANGE",
+        "description": "If your theater's red flag is down and the active scene color is blue, pink or orange",
+        "min_score": 10,
+        "max_score": 50
+    },
+    {
+        "title": "this isnt being used yet",
+        "description": "so it doesnt matter yet, ill complete it later for other functionality",
+        "min_score": 0,
+        "max_score": 0
+    }
+]

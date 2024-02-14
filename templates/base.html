@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+        <title>FLL VCS | {{ page | capitalize }}</title>
+    </head>
+    <body>
+        <div id="sidenav">
+            <div id="sidenav-title">
+                <span><b>FLL VCS</b> | v{{ version }}</span>
+                {% if page != 'Dashboard' %}
+                <a href="/">Back</a>
+                {% endif %}
+            </div>
+            {% for rowid, item in nav.items() %}
+            <div class="team-item">
+                <div class="team-title">
+                    <div class="team-info">
+                        <a href="{{ url_for('Team.view_team', rowid=rowid) }}">{{ item['name'] | capitalize }}</a>
+                        <h6>- Robot: <i>{{ item['robot'] }}</i></h6>
+                    </div>
+                    <div class="team-count">Runs: {{ item['runs'] | length }}</div>
+                </div>
+                <ul class="team-runs">
+                    {% for rowid, run in item['runs'].items() %}
+                    <li class="team-run-row">
+                        <span>[{{ run['robot_slot'] }}] {{ run['title'] | capitalize }}</span>
+                        <span><a href="{{ url_for('static', filename=run['url']) }}">Download v{{ run['version'] }}</a></span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+            <a href="https://github.com/barkerprooks/fll-dashboard">Visit the GitHub page</a>
+        </div>
+        <div id="content">
+            {% if error %}
+            <div class="error">{{ error }}</div>
+            {% endif %}
+            {% block content %}
+            unable to load content
+            {% endblock %}
+        </div>
+        <script src="{{ url_for('static', filename="js/main.js") }}"></script>
+    </body>
+</html>

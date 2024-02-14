@@ -1,0 +1,7 @@
+{
+    "VERSION": "1.0.0",
+    "DATABASE_PATH": "./fllvcs.db",
+    "DATABASE_SCHEMA_PATH": "./etc/schema.sql",
+    "LLSP3_UPLOAD_PATH": "./static/llsp3",
+    "IMAGE_UPLOAD_PATH": "./static/images"
+}
